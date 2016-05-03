@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 class ScaffoldServiceProvider extends ServiceProvider
 {
     protected $commands = [
-        Webup\LaravelScaffold\Console\Admin::class,
+        \Webup\LaravelScaffold\Console\ScaffoldAdmin::class,
     ];
 
     /**

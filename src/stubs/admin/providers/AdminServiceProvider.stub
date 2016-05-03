@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Routing\Router;
+use Illuminate\Support\ServiceProvider;
+
+class AdminServiceProvider extends ServiceProvider
+{
+    protected $commands = [
+        \App\Console\Commands\AdminCreate::class,
+        \App\Console\Commands\AdminDelete::class,
+        \App\Console\Commands\AdminList::class,
+        \App\Console\Commands\AdminUpdate::class,
+    ];
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->app->router->middleware('admin.auth', \App\Http\Middleware\AdminAuthenticate::class);
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->commands($this->commands);
+    }
+}

@@ -1,0 +1,49 @@
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Foundation\Inspiring;
+
+class AdminUpdate extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'admin:update {id}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Update an admin user';
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $this->comment("Update an admin user");
+
+        $user = \App\Entities\AdminUser::find($this->argument('id'));
+        if (!$user) {
+            $this->comment("Admin user not found.");
+            return;
+        }
+
+        $user->email = $this->ask('email', $user->email);
+        $password = $this->ask('password', false);
+        if ($password) {
+            $user->password = bcrypt($password);
+        }
+
+        $user->save();
+
+        $this->comment("Admin user updated");
+    }
+}
