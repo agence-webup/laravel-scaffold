@@ -1,0 +1,22 @@
+{
+    "name": "webup/laravel-scaffold",
+    "description": "Laravel's module scaffolding",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Baptiste Ducatel",
+            "email": "baptiste@agence-webup.com",
+            "homepage": "http://agence-webup.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Webup\\LaravelScaffold\\": "src/"
+        }
+    }
+}
