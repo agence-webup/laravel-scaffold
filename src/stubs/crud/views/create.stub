@@ -1,0 +1,39 @@
+@extends('admin.layouts.master')
+
+@section('content')
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>Dummies</h1>
+    </section>
+
+    <section class="content">
+        @include('flash::message')
+
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Ajouter un dummy</h3>
+            </div>
+
+            <div class="box-body">
+                <form action="{{ route('admin.dummies.store') }}" method="post">
+                    {{ csrf_field() }}
+
+                    <div class="form-group @if($errors->has('name')) has-error @endif">
+                        <label for="name" class="control-label">Name<i class="f-required">*</i></label>
+                        <input type="text" id="name" name="name" value="{{ old('name') }}" required class="form-control">
+
+                        @if($errors->has('name'))
+                        @foreach ($errors->get('name') as $message)
+                        <span class="help-block">{{ $message }}</span>
+                        @endforeach
+                        @endif
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+@endsection

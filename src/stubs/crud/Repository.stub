@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Entities\Dummy;
+
+class DummyRepository
+{
+    public function __construct(Dummy $model)
+    {
+        $this->model = $model;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function all()
+    {
+        return $this->model->all();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function find($id)
+    {
+        return $this->model->find($id);
+    }
+
+    /**
+     * Save a new model and return the instance.
+     *
+     * @param  array  $attributes
+     * @return mixed
+     */
+    public function create(array $attributes)
+    {
+        return $this->model->create($attributes);
+    }
+
+    /**
+     * Update a entity in repository by id
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException
+     * @param $id
+     * @param array $attributes
+     * @return mixed
+     */
+    public function update($id, array $attributes)
+    {
+        $model = $this->model->findOrFail($id);
+        $model->fill($attributes);
+        $model->save();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function delete($id)
+    {
+        return $this->model->destroy($id);
+    }
+}

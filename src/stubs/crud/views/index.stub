@@ -1,0 +1,51 @@
+@extends('admin.layouts.master')
+
+@section('content')
+<div class="content-wrapper">
+
+    <section class="content-header">
+        <h1>Dummies</h1>
+    </section>
+
+    <section class="content">
+        @include('flash::message')
+
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Liste des dummies</h3>
+            </div>
+
+            <div class="box-body">
+                <div class="margin-bottom">
+                    <a href="{{ route('admin.dummies.create') }}" class="btn btn-primary">Ajouter un dummy</a>
+                </div>
+                <table class="table table-bordered table-hover dataTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($dummies as $dummy)
+                        <tr>
+                            <td>{{ $dummy->name }}</td>
+                            <td>
+                                <a href="{{ route('admin.dummies.edit', $dummy->id) }}" class="margin-r-5">
+                                    <i class="fa fa-edit"></i> Modifier
+                                </a>
+                                <form action="{{ route('admin.dummies.destroy', $dummy->id) }}" method="post" class="inline">
+                                    {{ method_field('delete') }}
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-link js-confirm-delete"><i class="fa fa-trash"></i> Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+@endsection

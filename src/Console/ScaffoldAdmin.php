@@ -48,7 +48,7 @@ class ScaffoldAdmin extends Command
 
         foreach ($files as $stub => $path) {
             $destPath = base_path($path);
-            $this->line('<info>Created View:</info> '.$destPath);
+            $this->line('<info>Create file:</info> '.$destPath);
             copy($stubPath.$stub, $destPath);
         }
 

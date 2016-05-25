@@ -8,6 +8,7 @@ class ScaffoldServiceProvider extends ServiceProvider
 {
     protected $commands = [
         \Webup\LaravelScaffold\Console\ScaffoldAdmin::class,
+        \Webup\LaravelScaffold\Console\ScaffoldCrud::class,
     ];
 
     /**
