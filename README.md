@@ -5,7 +5,7 @@ Laravel's module scaffolding
 ## Installation
 
 ```shell
-composer require webup/laravel-scaffold
+composer require webup/laravel-scaffold dev-master
 ```
 
 ## Provider
